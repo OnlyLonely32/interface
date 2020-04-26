@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+ <style>
+  *, *:hover, *:active, *::after, *::before{
+   margin: 0;
+   padding: 0;
+   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+
+  .main{
+   position: relative;
+   background: #EEEEEE;
+   width: 100%;
+   height: 100vh;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+  }
+
+  .main__title{
+   font-size: 4em;
+   text-align: center;
+   font-weight: lighter;
+  }
+
+  .main__subtitle{
+   font-size: 3em;
+  }
+
+  .main__buttons{
+   margin-top: 1em;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+  }
+
+  .main__button{
+   min-width: 256px;
+   padding: .5em;
+   text-transform: uppercase;
+   font-weight: bold;
+   font-size: 1em;
+   border-radius: 5px;
+   background-color: #fff;
+  }
+
+  .main__button:nth-child(2){
+   margin-top: .5em;
+  }
+
+  .main__container{
+   padding: 20px 30px;
+   z-index: 5;
+   background-color: rgba(255, 255, 255, .7);
+   border-radius: 5px;
+  }
+
+  .main__wrapper{
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   opacity: 0;
+   transition: opacity 1s;
+  }
+ </style>
+ <title>Select menu</title>
+</head>
+<body>
+ <section  class="main">
+  <div class="main__container">
+   <h1 class="main__title">Hello</h1>
+   <h2 class="main__subtitle main__title">Select the game</h2>
+   <div class="main__buttons">
+    <button id="gallows" class="main__button gallows">gallows</button>
+    <button id="tic-tac" class="main__button">tic-tac-toe</button>
+   </div>
+  </div>
+  <div class="main__wrapper" id="main">
+  </div>
+ </section>
+
+ <script>
+  
+ let tBtn = document.getElementById("tic-tac");
+ let gBtn = document.getElementById("gallows");
+
+ let main = document.getElementById("main");
+
+ tBtn.addEventListener("mouseover", function() {
+  main.style.background = "url('./tic-tac.jpg') center center no-repeat #EEEEEE";
+  main.style.opacity = "1"
+ });
+
+ tBtn.addEventListener("mouseleave", function() {
+  main.style.opacity = "0"
+ });
+
+ gBtn.addEventListener("mouseover", function() {
+  main.style.background = "url('./gallows.jpg') center center no-repeat #EEEEEE";
+  main.style.opacity = "1"
+ });
+
+ gBtn.addEventListener("mouseleave", function() {
+  main.style.opacity = "0"
+ });
+
+ </script>
+</body>
+</html>
