@@ -1,0 +1,19 @@
+
+table {
+    border-collapse:collapse;
+}
+td {
+	border: 3px solid black;
+	font-size:80px;
+	color:black;
+    border-radius: 10px 10px 10px 10px;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    /* background : url('./tic-tac.jpg') center center no-repeat #EEEEEE; */
+}
+#player{
+    margin-top: 40px;
+    font-size: 30px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
