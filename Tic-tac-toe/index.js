@@ -1,4 +1,5 @@
 "use strict";
+
 var sizeSquare = 3,
     player = 'X',
     boxes = [],
@@ -8,6 +9,7 @@ newGame();
 
 function newGame() {
     sizeSquare = +(prompt('Field size', 3));
+    
     showTable();
 }
 
@@ -19,6 +21,7 @@ function showTable() {
     var table = document.createElement('table');
     table.setAttribute('border', 1);
     table.setAttribute('cellspacing', 0);
+    
     for (var i = 0; i < sizeSquare; i++) {
         boxes[i] = [];
         var row = document.createElement('tr');
@@ -31,7 +34,9 @@ function showTable() {
             boxes[i][j] = null;
         }
     }
+    table.classList.add("field");
     document.getElementById("tictactoe").appendChild(table);
+    
 }
 
 function record() {
@@ -52,7 +57,8 @@ function turn(i, j) {
     if (boxes[i][j] === null) {
         filled++;
         boxes[i][j] = player === 'X' ? 'X' : 'O';
-        event.target.style.background  = player === 'X' ? "url('./x.jpg') center center repeat" : "url('./y.jpg') center center repeat";
+        
+        event.target.style.background = player === 'X' ? "url('./img/cross.svg') center center no-repeat #fff"  : "url('./img/circle.svg') center center no-repeat #fff";
         event.target.textContent = player === 'X' ? 'X' : 'O';
         setTimeout(function () {
             if (checkWin(player)) {
