@@ -5,11 +5,17 @@ var sizeSquare = 3,
     boxes = [],
     filled = 0;
 
-newGame();
+document.getElementById("start").onclick = function () {
+    newGame();
+}
+
 
 function newGame() {
-    sizeSquare = +(prompt('Field size', 3));
-    
+    // sizeSquare = +(prompt('Field size', 3));
+    let modalDialog = document.getElementById("dialog");
+    let sizeSquare = document.getElementById("fieldSize");
+    sizeSquare = + sizeSquare.value;
+    modalDialog.classList.remove("dialog__active");
     showTable();
 }
 
