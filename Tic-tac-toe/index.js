@@ -12,8 +12,8 @@ document.getElementById("start").onclick = function () {
 function newGame() {
     // sizeSquare = +(prompt('Field size', 3));
     let modalDialog = document.getElementById("dialog");
-    let sizeSquare = document.getElementById("fieldSize");
-    sizeSquare = + sizeSquare.value;
+    let size = document.getElementById("fieldSize");
+    sizeSquare = + size.value;
     modalDialog.classList.remove("dialog__active");
     showTable();
 }
@@ -68,7 +68,10 @@ function turn(i, j) {
         
         if (checkWin(player)) {
             document.getElementById("player").textContent = 'Win Player ' + player;
-            startGame();
+            setTimeout(function () {
+                startGame();
+            }, 3000);
+            
             return;
         } else if (filled === sizeSquare * sizeSquare) {
             startGame() 
@@ -82,10 +85,10 @@ function turn(i, j) {
 }
 
 function startGame() {
-    setTimeout(function () {
-        alert('New Game?');
+    // setTimeout(function () {
+        // alert('New Game?');
         window.location.reload();
-    }, 0);
+    // }, 0);
 }
 
 function checkWin(player) {
