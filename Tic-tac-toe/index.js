@@ -9,7 +9,6 @@ document.getElementById("start").onclick = function () {
     newGame();
 }
 
-
 function newGame() {
     // sizeSquare = +(prompt('Field size', 3));
     let modalDialog = document.getElementById("dialog");
@@ -56,7 +55,7 @@ function readingClassList(arr) {
     var j = +arr[1];
     if (arr[1] === undefined)
         j = i;
-    turn(i, j);
+    turn(i, j);       
 }
 
 function turn(i, j) {
@@ -66,19 +65,27 @@ function turn(i, j) {
         
         event.target.style.background = player === 'X' ? "url('./img/cross.svg') center center no-repeat #fff"  : "url('./img/circle.svg') center center no-repeat #fff";
         event.target.textContent = player === 'X' ? 'X' : 'O';
-        setTimeout(function () {
-            if (checkWin(player)) {
-                alert('Win ' + player);
-                window.location.reload();
-            } else if (filled == sizeSquare * sizeSquare) {
-                alert('New Game');
-                window.location.reload();
-            }
-            player = boxes[i][j] === 'X' ? 'O' : 'X';
-            document.getElementById("player").textContent = 'Player ' + player;
-        }, 0);
+        
+        if (checkWin(player)) {
+            document.getElementById("player").textContent = 'Win Player ' + player;
+            startGame();
+            return;
+        } else if (filled === sizeSquare * sizeSquare) {
+            startGame() 
+            return;
+        }
+        player = boxes[i][j] === 'X' ? 'O' : 'X';
+        document.getElementById("player").textContent = 'Player ' + player;
+               
     }
     console.log(boxes[i][j]);
+}
+
+function startGame() {
+    setTimeout(function () {
+        alert('New Game?');
+        window.location.reload();
+    }, 0);
 }
 
 function checkWin(player) {
