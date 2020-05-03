@@ -1,0 +1,51 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NoteGame: Hangman</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="js/words.js"></script>
+</head>
+<body>
+  <h1>Hangman</h1>
+  <div class="game">
+    <div id="progress">
+      <img src="progress/0.png" alt="hangman", width="200px">
+    </div>
+
+    <div class="rigth_panel">
+      <div id="word"></div>
+      <hr>
+      <div id="panel_input"></div>
+      <div id="reload" style="display: none;">
+        <a href="index.html">Reload</a>
+      </div>
+    </div>
+
+    <div class="help">
+      <details>
+        <summary>How to play?</summary>
+        <p>
+          A random word is selected by the program and draws a certain number of underlines, how many letters are in the word.
+          The player begins to indicate the letters to guess the word.
+          If the letter is in the word, then it will be displayed in an empty field (if there are several such letters, then all fit),
+          and if not, then the program draws one element of the hanged man (head, body, 2 arms, 2 legs - only 6 attempt elements).
+        </p>
+      </details>
+    </div>
+  </div>
+  
+  
+  <div class="menu">
+    <button onclick="draw_level();">Start Game</button>
+    
+    
+    <button>Back</button>
+  </div>
+
+  <script src="js/jquery-3.5.0.min.js"></script>
+  <script src="js/hangman.js"></script>
+</body>
+</html>
+
+  

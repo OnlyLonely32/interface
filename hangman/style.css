@@ -1,0 +1,28 @@
+#panel_input, #word, .game {
+  display: flex; 
+}
+
+#panel_input, #word {
+  justify-content: center;
+  max-width: 300px;
+  flex-wrap: wrap;
+}
+
+#word {
+  max-width: 400px;
+}
+
+.char {
+  margin: 3px;
+  border: 1px solid black;
+  width: 20px;
+  padding: 2px 0px 2px 6px;
+}
+
+.char:hover {
+  background: #a16969;
+}
+
+.help {
+  max-width: 400px;
+}
