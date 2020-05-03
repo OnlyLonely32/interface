@@ -5,7 +5,7 @@ var sizeSquare = 3,
     boxes = [],
     filled = 0;
 
-document.getElementById("start").onclick = function () {
+document.getElementById("startWithFriend").onclick = function () {
     newGame();
 }
 

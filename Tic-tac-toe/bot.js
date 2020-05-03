@@ -10,7 +10,7 @@ var sizeSquare = 3,
     filled = 0,
     emptyCell = [];
 
-document.getElementById("start").onclick = function () {
+document.getElementById("startWithBot").onclick = function () {
     newGame();
 }
 
@@ -97,7 +97,7 @@ function goBot(){
         emptyCell = emptyCell.filter(x => x !== namerand);
         if (checkWin('O')) {
             document.getElementById("player").textContent = 'Win Player ' + 'O';
-            window.location.reload();
+            startGame();
             return;
         } else if (filled === sizeSquare * sizeSquare) {
             window.location.reload();
