@@ -1,5 +1,9 @@
 "use strict";
 
+document.getElementById("back").onclick = () => {
+    window.location = "../index.html";
+}
+
 var sizeSquare = 3,
     player = 'X',
     boxes = [],
@@ -12,8 +16,6 @@ document.getElementById("start").onclick = function () {
 
 function newGame() {
     let modalDialog = document.getElementById("dialog");
-    let size = document.getElementById("fieldSize");
-    sizeSquare = + size.value;
     modalDialog.classList.remove("dialog__active");
     showTable();
 }
@@ -104,7 +106,7 @@ function goBot(){
     }, 300);
 }
 function startGame() {
-    window.location.reload();
+    setTimeout(()=>{window.location.reload();},3000);
 }
 
 function checkWin(player) {

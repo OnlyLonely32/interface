@@ -12,8 +12,6 @@ document.getElementById("start").onclick = function () {
 function newGame() {
     // sizeSquare = +(prompt('Field size', 3));
     let modalDialog = document.getElementById("dialog");
-    let size = document.getElementById("fieldSize");
-    sizeSquare = + size.value;
     modalDialog.classList.remove("dialog__active");
     showTable();
 }

@@ -1,10 +1,12 @@
 *, *::after, *::before {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 .main{
     position: relative;
+    background: #EEEEEE;
     height: 100vh;
     width: 100%;
     display: flex;
@@ -20,19 +22,24 @@
     font-size: 30px;
 }
 
+.tictactoe{
+    border-radius: 10px;
+    overflow: hidden;
+}
+
 .field{
     padding: 0px;
     border-collapse: collapse;
-    border: 4px solid white;
+    border: 6px solid white;
+    background: #fff;
 }
 
 .field *{
-    background: #fff;
     border-collapse: collapse;
 	border: 2px solid #000;
 	font-size:0px;
     width: 100px;
-    height: 100px;
+    height: 100px;  
 }
 
 .dialog{
@@ -70,7 +77,7 @@
     text-align: center;
 }
 
-.fieldSize{
+/* .fieldSize{
     min-width: 256px;
     padding: .5em;
     text-transform: uppercase;
@@ -78,7 +85,7 @@
     font-size: 1em;
     border-radius: 5px;
     background-color: #fff;
-}
+} */
 
 .button{
     min-width: 256px;
