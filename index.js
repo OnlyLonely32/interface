@@ -1,7 +1,3 @@
-document.getElementById("tic-tac").onclick = function () {
-  window.location = 'Tic-tac-toe/index.html';
-}
-
 let tBtn = document.getElementById("tic-tac");
 let gBtn = document.getElementById("gallows");
 
