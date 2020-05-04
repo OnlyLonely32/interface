@@ -2,16 +2,16 @@ let keyboard = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 let life = 0;
 let word = '';
 let success = 0;
-let MAX_COUNT_WORDS = 112;
+let MAX_COUNT_WORDS = 999;
 
-function draw_level(){
+function initLevel(){
   $('.menu').css("display", "none");
   $('#reload').css("display", "block");
-  draw_word();
-  draw_keyboard();
+  drawWord();
+  drawKeyboard();
 }
 
-function draw_word(){
+function drawWord(){
   word = generateWord().toUpperCase();
   let html = '';
   for (let i = 0; i < word.length; i++){
@@ -24,7 +24,7 @@ function generateWord(){
   return words[getRandomInt()];
 }
 
-function draw_keyboard(){
+function drawKeyboard(){
   let html = '';
   for (let i = 0; i < keyboard.length; i++){
     html += "<div class='char' onclick='choseLetter(this);' value='" + keyboard[i] + "'>" + keyboard[i]+ "</div>"
