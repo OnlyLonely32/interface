@@ -1,16 +1,20 @@
 "use strict";
 
+document.getElementById("back").onclick = () => {
+    window.location = "../index.html";
+}
+
 var sizeSquare = 3,
     player = 'X',
     boxes = [],
-    filled = 0;
+    filled = 0,
+    emptyCell = [];
 
-document.getElementById("startWithFriend").onclick = function () {
+document.getElementById("startWithBot").onclick = function () {
     newGame();
 }
 
 function newGame() {
-    // sizeSquare = +(prompt('Field size', 3));
     let modalDialog = document.getElementById("dialog");
     modalDialog.classList.remove("dialog__active");
     showTable();
@@ -24,27 +28,29 @@ function showTable() {
     var table = document.createElement('table');
     table.setAttribute('border', 1);
     table.setAttribute('cellspacing', 0);
-    
+
     for (var i = 0; i < sizeSquare; i++) {
         boxes[i] = [];
         var row = document.createElement('tr');
         table.appendChild(row);
         for (var j = 0; j < sizeSquare; j++) {
             var cell = document.createElement('td');
-            cell.classList.add(i, j);
+            var str = i === j ? i : new String(i + "/" + j);
+            cell.classList.add(str);
             cell.addEventListener('click', record);
             row.appendChild(cell);
             boxes[i][j] = null;
+            emptyCell.push({i, j});
+            
         }
     }
     table.classList.add("field");
     document.getElementById("tictactoe").appendChild(table);
-    
 }
 
 function record() {
     var cell = event.target;
-    var arr = cell.className.split(" ");
+    var arr = cell.className.split("/");
     readingClassList(arr);
 }
 
@@ -53,40 +59,54 @@ function readingClassList(arr) {
     var j = +arr[1];
     if (arr[1] === undefined)
         j = i;
-    turn(i, j);       
+    turn(i, j);
 }
 
 function turn(i, j) {
     if (boxes[i][j] === null) {
         filled++;
-        boxes[i][j] = player === 'X' ? 'X' : 'O';
-        
-        event.target.style.background = player === 'X' ? "url('./img/cross.svg') center center no-repeat #fff"  : "url('./img/circle.svg') center center no-repeat #fff";
+        boxes[i][j] = 'X';
+        event.target.style.background = "url('./img/cross.svg') center center no-repeat #fff";
         event.target.textContent = player === 'X' ? 'X' : 'O';
-        
+        var newemptyCell = emptyCell.filter(x=> x!== emptyCell.find(x => x.i === i && x.j ===j))
+        emptyCell = newemptyCell;
+        console.log(newemptyCell);
         if (checkWin(player)) {
             document.getElementById("player").textContent = 'Win Player ' + player;
-            setTimeout(function () {
-                startGame();
-            }, 3000);
-            
+            startGame();
             return;
         } else if (filled === sizeSquare * sizeSquare) {
-            startGame() 
+            startGame();
             return;
         }
-        player = boxes[i][j] === 'X' ? 'O' : 'X';
         document.getElementById("player").textContent = 'Player ' + player;
-               
+        goBot();
     }
     console.log(boxes[i][j]);
 }
-
+function goBot(){
+    setTimeout(function () {
+        var namerand = emptyCell[Math.floor(Math.random() * emptyCell.length)];
+        var i = namerand.i;
+        var j = namerand.j;
+        var str = i === j ? i: new String(i + "/" + j);
+        console.log(str);
+        boxes[i][j] = 'O';
+        document.getElementsByClassName(str)[0].style.background = "url('./img/circle.svg') center center no-repeat #fff";
+        console.log('i', i, 'j', j);
+        emptyCell = emptyCell.filter(x => x !== namerand);
+        if (checkWin('O')) {
+            document.getElementById("player").textContent = 'Win Player ' + 'O';
+            startGame();
+            return;
+        } else if (filled === sizeSquare * sizeSquare) {
+            window.location.reload();
+            return;
+        }
+    }, 300);
+}
 function startGame() {
-    // setTimeout(function () {
-        // alert('New Game?');
-        window.location.reload();
-    // }, 0);
+    setTimeout(()=>{window.location.reload();},3000);
 }
 
 function checkWin(player) {
