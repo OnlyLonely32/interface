@@ -4,9 +4,15 @@ let word = '';
 let success = 0;
 let MAX_COUNT_WORDS = 999;
 
+document.getElementById("reload").onclick = () =>{
+  $('.game').fadeOut(400);
+  setTimeout(() => {
+    onclick=window.location.reload();
+  }, 400)
+}
+
 function initLevel(){
   $('.menu').fadeOut(400);
-  $('#reload').css("display", "block");
   drawWord();
   drawKeyboard();
   setTimeout(() => {

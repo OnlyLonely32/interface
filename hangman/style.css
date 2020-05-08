@@ -34,17 +34,22 @@ html{
 
 .game{
   display: none;
+}
 
+.main__title{
+  margin-bottom: 1rem;
 }
 
 .char {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 3px;
   border: 1px solid black;
   min-width: 30px;
   min-height: 30px;
   text-align: center;
   transition: all .4s;
-
   text-transform: uppercase;
   font-weight: bold;
   font-size: 1em;
@@ -52,11 +57,23 @@ html{
   background-color: #fff;
 }
 
+.reload{
+  margin: .5rem 0;
+}
+
 .char:hover {
   background: #a16969;
 }
 
+.progress{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.panel_input{
+  text-align: center;
+}
 
 .help {
   max-width: 400px;
@@ -92,5 +109,5 @@ html{
 }
 
 .main__button:nth-child(2){
-  margin-top: .5em;
+  margin-bottom: .5em;
 }
