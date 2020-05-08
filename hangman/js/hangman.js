@@ -5,10 +5,14 @@ let success = 0;
 let MAX_COUNT_WORDS = 999;
 
 function initLevel(){
-  $('.menu').css("display", "none");
+  $('.menu').fadeOut(400);
   $('#reload').css("display", "block");
   drawWord();
   drawKeyboard();
+  setTimeout(() => {
+    $('.game').fadeIn(400);
+  }, 400)
+  
 }
 
 function drawWord(){

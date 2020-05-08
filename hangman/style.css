@@ -1,3 +1,15 @@
+html{
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  
+}
+
+*, *::after, *::before{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
 #panel_input, #word, .game {
   display: flex; 
 }
@@ -12,17 +24,73 @@
   max-width: 400px;
 }
 
+.rigth_panel{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.game{
+  display: none;
+
+}
+
 .char {
   margin: 3px;
   border: 1px solid black;
-  width: 20px;
-  padding: 2px 0px 2px 6px;
+  min-width: 30px;
+  min-height: 30px;
+  text-align: center;
+  transition: all .4s;
+
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 1em;
+  border-radius: 5px;
+  background-color: #fff;
 }
 
 .char:hover {
   background: #a16969;
 }
 
+
+
 .help {
   max-width: 400px;
+}
+
+.main{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+}
+
+.main__title{
+  text-align: center;
+}
+
+.main__buttons{
+  margin-top: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main__button{
+  min-width: 256px;
+  padding: .5em;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 1em;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.main__button:nth-child(2){
+  margin-top: .5em;
 }
