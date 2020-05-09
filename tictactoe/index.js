@@ -1,12 +1,34 @@
 "use strict";
 
+document.getElementById("back").onclick = () => {
+    $('#dialog').fadeOut();
+    setTimeout(() =>{
+        window.location.href = "../index.html";
+    }, 400)
+}
+
 var sizeSquare = 3,
     player = 'X',
     boxes = [],
-    filled = 0;
+    filled = 0,
+    emptyCell = [],
+    gameMode = 0,
+    str,arr,newemptyCell;
 
 document.getElementById("startWithFriend").onclick = function () {
-    newGame();
+    $('#dialog').fadeOut();
+    setTimeout(() =>{
+        gameMode = 0;
+        newGame();
+    }, 400)
+}
+
+document.getElementById("startWithBot").onclick = function () {
+    $('#dialog').fadeOut();
+    setTimeout(() =>{
+        gameMode = 1;
+        newGame();
+    }, 400)
 }
 
 function newGame() {
@@ -15,6 +37,7 @@ function newGame() {
     modalDialog.classList.remove("dialog__active");
     showTable();
 }
+
 
 function showTable() {
     boxes = [
@@ -29,23 +52,42 @@ function showTable() {
         boxes[i] = [];
         var row = document.createElement('tr');
         table.appendChild(row);
+        
         for (var j = 0; j < sizeSquare; j++) {
             var cell = document.createElement('td');
-            cell.classList.add(i, j);
+            if( gameMode == 0){
+                // for player
+                cell.classList.add(i, j);
+                
+            } else
+            if( gameMode == 1){// for bot
+                str = i === j ? i : new String(i + "/" + j);
+                cell.classList.add(str);
+                
+            }
             cell.addEventListener('click', record);
             row.appendChild(cell);
             boxes[i][j] = null;
+            emptyCell.push({i, j});
         }
     }
     table.classList.add("field");
-    document.getElementById("tictactoe").appendChild(table);
-    
+    document.getElementById("tictactoe").appendChild(table);  
 }
 
 function record() {
     var cell = event.target;
-    var arr = cell.className.split(" ");
+    if( gameMode === 0){
+        // for player
+        arr = cell.className.split(" ");
+    } else
+    if( gameMode === 1){
+        // for bot
+        arr = cell.className.split("/");
+    }   
+
     readingClassList(arr);
+    
 }
 
 function readingClassList(arr) {
@@ -57,36 +99,72 @@ function readingClassList(arr) {
 }
 
 function turn(i, j) {
+
     if (boxes[i][j] === null) {
         filled++;
-        boxes[i][j] = player === 'X' ? 'X' : 'O';
-        
-        event.target.style.background = player === 'X' ? "url('./img/cross.svg') center center no-repeat #fff"  : "url('./img/circle.svg') center center no-repeat #fff";
+        if( gameMode === 0){
+            // for player
+            boxes[i][j] = player === 'X' ? 'X' : 'O';
+            event.target.style.background = player === 'X' ? "url('./img/cross.svg') center center no-repeat #fff"  : "url('./img/circle.svg') center center no-repeat #fff";        
+        } else
+        if( gameMode === 1){
+            // for bot
+            boxes[i][j] = 'X';
+            event.target.style.background = "url('./img/cross.svg') center center no-repeat #fff";
+        }   
+
+        if( gameMode === 1){
+            newemptyCell = emptyCell.filter(x=> x!== emptyCell.find(x => x.i === i && x.j ===j))
+            emptyCell = newemptyCell;
+
+        }
         event.target.textContent = player === 'X' ? 'X' : 'O';
         
         if (checkWin(player)) {
             document.getElementById("player").textContent = 'Win Player ' + player;
-            setTimeout(function () {
-                startGame();
-            }, 3000);
-            
+            startGame();            
             return;
         } else if (filled === sizeSquare * sizeSquare) {
             startGame() 
             return;
         }
-        player = boxes[i][j] === 'X' ? 'O' : 'X';
-        document.getElementById("player").textContent = 'Player ' + player;
-               
+        
+
+        if( gameMode === 0){
+            // for player
+            player = boxes[i][j] === 'X' ? 'O' : 'X';
+        } else
+        if( gameMode === 1){
+            // for bot
+            goBot();
+        }  
+        document.getElementById("player").textContent = 'Player ' + player;     
     }
-    console.log(boxes[i][j]);
 }
 
 function startGame() {
-    // setTimeout(function () {
-        // alert('New Game?');
-        window.location.reload();
-    // }, 0);
+    setTimeout(()=>{window.location.reload();},3000);
+
+}
+
+function goBot(){
+    setTimeout(function () {
+        var namerand = emptyCell[Math.floor(Math.random() * emptyCell.length)];
+        var i = namerand.i;
+        var j = namerand.j;
+        str = i === j ? i: new String(i + "/" + j);
+        boxes[i][j] = 'O';
+        document.getElementsByClassName(str)[0].style.background = "url('./img/circle.svg') center center no-repeat #fff";
+        emptyCell = emptyCell.filter(x => x !== namerand);
+        if (checkWin('O')) {
+            document.getElementById("player").textContent = 'Win Player ' + 'O';
+            startGame();
+            return;
+        } else if (filled === sizeSquare * sizeSquare) {
+            window.location.reload();
+            return;
+        }
+    }, 300);
 }
 
 function checkWin(player) {

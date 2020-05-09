@@ -4,10 +4,17 @@ let word = '';
 let success = 0;
 let MAX_COUNT_WORDS = 999;
 
+document.getElementById("back").onclick = () =>{
+  $('.menu').fadeOut(400);
+  setTimeout(() => {
+    window.location.href='../index.html';
+  }, 400)
+}
+
 document.getElementById("reload").onclick = () =>{
   $('.game').fadeOut(400);
   setTimeout(() => {
-    onclick=window.location.reload();
+    window.location.reload();
   }, 400)
 }
 

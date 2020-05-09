@@ -8,13 +8,13 @@
  <title>Select menu</title>
 </head>
 <body>
- <section  class="main">
-  <div class="main__container">
+ <section class="main">
+  <div id="main__container" class="main__container">
    <h1 class="main__title">Hello</h1>
    <h2 class="main__subtitle main__title">Select the game</h2>
    <div class="main__buttons">
-    <button id="gallows" onclick="window.location.href='hangman/index.html'" class="main__button gallows">hangmen</button>
-    <button id="tic-tac" onclick="window.location.href='tictactoe/index.html'" class="main__button">tic-tac-toe</button>
+    <button id="gallows" class="main__button gallows">hangmen</button>
+    <button id="tic-tac" class="main__button">tic-tac-toe</button>
    </div>
   </div>
   <div class="main__wrapper" id="main">
@@ -22,5 +22,6 @@
  </section>
 
 <script src="index.js"></script>
+<script src="./hangman/js/jquery-3.5.0.min.js"></script>
 </body>
 </html>
